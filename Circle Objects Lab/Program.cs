@@ -59,15 +59,12 @@ while (runProgram)
   double input = -1;
   //The application displays an error if the user enters invalid data and asks the user again for a radius.
   //use while looop with tryparse or try catch
-  while (input <= 0)
+  while (input < 0)
   {
-    while (double.TryParse(Console.ReadLine(), out input) == false)
-    {
-      Console.WriteLine("That was invalid try again with a number greater than 0.");
-    }
+    input = Validator.GetUserNumber();
     if (input <= 0)
     {
-      Console.WriteLine($"Value cannot be zero or below. {input} is. Try again :)");
+      Console.WriteLine("That was invalid try again with a number greater than 0.");
     }
   }
   //create circle object
@@ -91,7 +88,7 @@ while (runProgram)
     else if (answer == "n")
     {
       runProgram = false;
-      if (allCircles.Count <2) // if (Count < 2)
+      if (allCircles.Count < 2) // if (Count < 2)
       {
         Console.WriteLine($"You made {allCircles.Count} circle object.");  //  Console.WriteLine($"You made {Count} circle object.");
         Console.WriteLine("Goodbye!");
