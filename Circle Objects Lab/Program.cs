@@ -48,21 +48,34 @@
 /// Extra Challenges:
 ///    a) Create a class named Validator and use its static methods to validate the data in this application.
 
-
+List<CircleObj> allCircles = new List<CircleObj>();
 Console.WriteLine("Welcome to the Circle Tester\n");
 //loop program
 bool runProgram = true;
-int Count = 1;
+//int Count = 0; //one way to make the counter
 while (runProgram)
 {
   Console.Write("Enter radius: ");
-  double radius = double.Parse(Console.ReadLine());
-
-  Circle Circles = new Circle(radius);
-  Circles.CalculateCircumference(radius);
-  Console.WriteLine($"Circumfrence: {Circles.CalculateFormattedCircumference(radius)}");
-  Console.WriteLine($"Area: {Circles.CalculateFormattedArea(radius)}");
-
+  double input = -1;
+  //The application displays an error if the user enters invalid data and asks the user again for a radius.
+  //use while looop with tryparse or try catch
+  while (input <= 0)
+  {
+    while (double.TryParse(Console.ReadLine(), out input) == false)
+    {
+      Console.WriteLine("That was invalid try again with a number greater than 0.");
+    }
+    if (input <= 0)
+    {
+      Console.WriteLine($"Value cannot be zero or below. {input} is. Try again :)");
+    }
+  }
+  //create circle object
+  CircleObj myCircle = new CircleObj(input);
+  //Count++;
+  allCircles.Add(myCircle);
+  Console.WriteLine($"Circumfrence: {myCircle.CalculateFormattedCircumference()}");
+  Console.WriteLine($"Area: {myCircle.CalculateFormattedArea()}");//if you do not put the '()' after the call method it will just show the name of the object
   while (runProgram = true)
   {
     Console.WriteLine("Continue? (y/n)");
@@ -72,22 +85,21 @@ while (runProgram)
     {
       Console.WriteLine("Cool.");
       runProgram = true;
-      Count = Count + 1;
       Console.Clear();
       break;
     }
     else if (answer == "n")
     {
       runProgram = false;
-      if (Count < 2)
+      if (allCircles.Count <2) // if (Count < 2)
       {
-        Console.WriteLine($"You made {Count} circle object.");
+        Console.WriteLine($"You made {allCircles.Count} circle object.");  //  Console.WriteLine($"You made {Count} circle object.");
         Console.WriteLine("Goodbye!");
         break;
       }
       else
       {
-        Console.WriteLine($"You made {Count} circle objects.");
+        Console.WriteLine($"You made {allCircles.Count} circle objects."); //  Console.WriteLine($"You made {Count} circle objects.");
         Console.WriteLine("Goodbye!");
         break;
       }

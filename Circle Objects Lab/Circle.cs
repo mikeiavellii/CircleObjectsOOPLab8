@@ -1,58 +1,44 @@
 ﻿namespace Circle_Objects_Lab
 {
-  public class Circle
+  public class CircleObj //renamed from Circle as the system can't tell the differnce beteween the class circle and object circle
   {
     //properties
     public double radius { get; set; }
-    public double Circumference { get; set; }
-    public double Area { get; set; }
 
     //Constructor
-    public Circle(double _radius)
+    public CircleObj(double _radius)
     {
       radius = _radius;
-      Circumference = CalculateCircumference(_radius);
-      Area = CalculateArea(_radius);
     }
-
-
-    public Circle()    //Overloaded = default
-    {
-      radius = 5;
-      Circumference = CalculateCircumference(5);
-      Area = CalculateArea(5);
-
-    }
-
+  
     //methods
     //public double CalculateCircumference()
-    public double CalculateCircumference(double radius)
+    public double CalculateCircumference()
     {
-      Circumference = 2 * (Math.PI * radius);
-      return Circumference;
+      return 2 * (Math.PI * radius);
     }
     //public string CalculateFormattedCircumference()
-    public string CalculateFormattedCircumference(double x)
+    public string CalculateFormattedCircumference()
     {
-      Circumference = 2 * (Math.PI * radius);
-      return Math.Round(Circumference, 2).ToString();
+      return FormatNumber(CalculateCircumference());
     }
-
 
     //public double CalculateArea()
-    public double CalculateArea(double radius)
+    public double CalculateArea()
     {
-      Area = Math.PI * (Math.Pow(radius, 2));
-      return Area;
+      return Math.PI * (Math.Pow(radius, 2));
     }
+
     //public string CalculateFormattedArea()
-    public string CalculateFormattedArea(double x)
+    public string CalculateFormattedArea()
     {
-      Area = Math.PI * (Math.Pow(radius, 2));
-      return Math.Round(Area, 2).ToString();
+      return FormatNumber(CalculateArea());
     }
-  //private string FormatNumber(double x)
 
-
-}
+    //private string FormatNumber()
+    private string FormatNumber(double x)//this double comes from calc area or calc circumference
+    {
+      return Math.Round(x,2).ToString();
+    }
+  }
 }
